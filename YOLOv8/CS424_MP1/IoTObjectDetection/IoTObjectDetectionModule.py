@@ -49,7 +49,6 @@ class iot_object_detection_module:
 
     
     def run(self):
-        print(self.frame_period)
         while self.frame_number <= self.max_frame_number or not self.run_queue.empty():
 
             # get a frame when frame period arrives
