@@ -128,7 +128,6 @@ class TaskEntity:
         self.order = 0
         self.exec_time = 0
         self.remain_time = 0
-        self.deadline = deadline
         self.enqueue_time = 0
         self.response_time = 0
         self.proc_end_time = 0
@@ -143,7 +142,10 @@ class TaskEntity:
             self.img_width = 1920
             self.img_height = 1280
             
-        self.set_deadline(depth)
+        if deadline != 100:
+            self.deadline = deadline
+        else:
+            self.set_deadline(depth)
     
     def set_image_out_paths(self, image_path):
         """Set the object detection output & processing order output path."""
