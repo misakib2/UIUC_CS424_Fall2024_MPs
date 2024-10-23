@@ -142,6 +142,8 @@ class TaskEntity:
             # default image size from Waymo
             self.img_width = 1920
             self.img_height = 1280
+            
+        self.set_deadline(depth)
     
     def set_image_out_paths(self, image_path):
         """Set the object detection output & processing order output path."""
@@ -149,6 +151,11 @@ class TaskEntity:
         self.image_out_path = image_path[:i+1] + "object_detection_history/" + image_path[i+1:]
         self.processing_order_out_path = image_path[:i+1] + "object_processing_order_history/" + image_path[i+1:]
         self.image_name = image_path[i+1:]
+        
+    def set_deadline(self, depth):
+        """Set task deadline based on depth."""
+        dl_table = [30, 50, 60, 70, 80, 100, 100, 100, 100, 100]
+        self.deadline = dl_table[int(depth/10)]
 
     def print(self):
         """Return a string showing important task information for printing."""
