@@ -67,6 +67,11 @@ class TaskBatch:
         for task in self.tasks:
             task.response_time = time
             
+    def set_proc_end_time(self, time):
+        """Set response_time for tasks in the batch."""
+        for task in self.tasks:
+            task.proc_end_time = time
+            
     """
     The following functions are used to implement comparison between TaskBatch.
     """

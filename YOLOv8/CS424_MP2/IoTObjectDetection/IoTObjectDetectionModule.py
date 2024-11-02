@@ -101,6 +101,7 @@ class iot_object_detection_module:
             self.task_finish_count = self.task_finish_count + 1
             task_batch.set_task_order(self.task_finish_count)
             task_batch.set_response_time(self.time - task_batch.enqueue_time + 1)
+            task_batch.set_proc_end_time(self.time + 1)
             
             for task in task_batch.tasks:
                 if task.response_time > task.deadline:
@@ -210,7 +211,7 @@ class iot_object_detection_module:
             print('{:<7d}{:s}'.format(i, entry.print()))
             i = i + 1
         print(dash)
-        print("### Deadline miss rate is: ", self.task_missed_count / self.task_finish_count, file=currentTextFile)
+        print("### Deadline miss rate is: ", self.task_missed_count / self.task_finish_count)
         
 #        history_print_end_time =  time.time()-self.start_time
 #        print("History print completed at the real-time: ", getRealTimeInPrintFormat())
